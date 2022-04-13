@@ -1,4 +1,4 @@
-package bbt
+package tree
 
 import "fmt"
 
