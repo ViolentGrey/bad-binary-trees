@@ -2,6 +2,6 @@ package tree
 
 import "fmt"
 
-func hello() {
+func He() {
 	fmt.Println("hello world")
 }
