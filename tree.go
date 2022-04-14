@@ -22,9 +22,12 @@ func Create_leaf(root string) *Node {
 	new_node := Node{root, nil, nil}
 	return &new_node
 }
-
-func Create_node(root, l, r string) *Node {
+func Create_leafed_node(root, l, r string) *Node {
 	new_node := Node{root, Create_leaf(l), Create_leaf(r)}
+	return &new_node
+}
+func Create_node(root string, l, r *Node) *Node {
+	new_node := Node{root, l, r}
 	return &new_node
 }
 
