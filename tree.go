@@ -17,6 +17,21 @@ type Node struct {
 	r_node *Node
 }
 
+//returns root of node
+func Get_root(n *Node) string {
+	return n.root
+}
+
+//returns left child node
+func Get_ln(n *Node) *Node {
+	return n.l_node
+}
+
+//returns right child node
+func Get_rn(n *Node) *Node {
+	return n.r_node
+}
+
 //creates a new leaf
 func Create_leaf(root string) *Node {
 	new_node := Node{root, nil, nil}
