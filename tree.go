@@ -17,9 +17,14 @@ type Node struct {
 	r_node *Node
 }
 
-//creates a new node
-func create_node(root string) *Node {
+//creates a new leaf
+func Create_leaf(root string) *Node {
 	new_node := Node{root, nil, nil}
+	return &new_node
+}
+
+func Create_node(root, l, r string) *Node {
+	new_node := Node{root, Create_leaf(l), Create_leaf(r)}
 	return &new_node
 }
 
@@ -34,7 +39,7 @@ func Edit_r_node(node *Node, new_val *Node) {
 }
 
 //Basic tree insertion
-func insert_node(parent, child, insertee *Node) error {
+func Insert_node(parent, child, insertee *Node) error {
 	if child == parent.l_node {
 		insertee.l_node, parent.l_node = child, insertee
 		return nil
@@ -47,7 +52,7 @@ func insert_node(parent, child, insertee *Node) error {
 }
 
 //Basic node deletion
-func delete_node(parent, child *Node) error {
+func Delete_node(parent, child *Node) error {
 	if child == parent.l_node {
 		parent.l_node = nil
 		return nil
@@ -60,7 +65,7 @@ func delete_node(parent, child *Node) error {
 }
 
 //Deletes node and all children
-func delete_all_nodes(parent, child *Node) error {
+func Del_all_nodes(parent, child *Node) error {
 
 	//end case
 	if child == nil {
@@ -68,19 +73,19 @@ func delete_all_nodes(parent, child *Node) error {
 	}
 
 	//Delete child
-	err := delete_node(parent, child)
+	err := Delete_node(parent, child)
 	if err != nil {
 		return err
 	}
 
 	//Delete left node and all its children
-	err = delete_all_nodes(child, child.l_node)
+	err = Del_all_nodes(child, child.l_node)
 	if err != nil {
 		return err
 	}
 
 	//Delete right node and all its children
-	err = delete_all_nodes(child, child.l_node)
+	err = Del_all_nodes(child, child.l_node)
 	if err != nil {
 		return err
 	}
